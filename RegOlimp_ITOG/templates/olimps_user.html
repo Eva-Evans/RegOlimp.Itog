@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+{% block title %}
+Мои олимпиады
+{% endblock %}
+
+{% block content_title %}
+    Мои олимпиады
+{% endblock %}
+
+{% block content %}
+
+     {% for post in pages.items %}
+        <p>
+            <a href="{{ url_for('post_detail', slug=post.slug) }}">{{ post.title }} </a>
+        </p>
+
+    {% endfor %}
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item {% if not pages.has_prev %}disabled{% endif %}">
+      <a class="page-link" href="./{%print(current_user.email)%}?page={{ pages.prev_num }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% for page in pages.iter_pages() %}
+        <li class="page-item  {% if page == pages.page %}active{% endif %}"><a class="page-link" href="./{%print(current_user.email)%}?page={{ page }}">{{ page }}</a></li>
+    {% endfor %}
+
+    <li class="page-item {% if not pages.has_next %}disabled{% endif %}">
+      <a class="page-link" href="./{%print(current_user.email)%}?page={{ pages.next_num }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+{% endblock %}

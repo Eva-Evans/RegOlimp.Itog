@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}
+    Авторизация
+{% endblock %}
+
+{% block content_title %}
+<div class="offset-md-3 col-md-5">  Авторизация </div>
+{% endblock %}
+
+{% block content %}
+<div class="offset-md-3 col-md-5">
+
+          {% for cat, msg in get_flashed_messages(True) %}
+        {% if msg == 'Успешная регистрация.' %}
+
+    <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">{{msg}}</div>
+
+        {% endif %}
+
+        {% if msg == 'Теперь можно авторизоваться на сайте.' %}
+
+     <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">{{msg}}</div>
+
+        {% endif %}
+
+        {% if msg == 'Дождитесь пока администратор подтвердит ваши данные.' %}
+
+     <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">{{msg}}</div>
+
+        {% endif %}
+
+
+{% endfor %}
+
+
+
+    {% for field, errors in form.errors.items() %}
+        <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+
+     {{ ', '.join(errors) }}
+</div>
+{% endfor %}
+
+<form  action="" method="post" class="form-contact" >
+
+    {{ form.hidden_tag() }}
+    <p>{{ form.email.label(class="control-label") }} {{ form.email(class="form-control") }}</p>
+    <p>{{ form.password.label(class="control-label") }} {{ form.password(class="form-control") }}</p>
+    <p>{{ form.remember.label(class="control-label") }} {{ form.remember() }}</p>
+    <p>{{ form.submit(class='btn btn-outline-success') }}</p>
+  <!--  <p><label>Email</label> <input type="text" name="email" value="" required></p>
+    <p><label>Пароль</label> <input type="password" name="password" value="" required></p>
+    <p><input type="submit" value="Войти"></p>--!>
+</form>
+</div>
+
+
+{% endblock %}

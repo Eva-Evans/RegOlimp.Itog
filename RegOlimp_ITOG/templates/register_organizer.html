@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block content_title %}
+<div class="offset-md-3 col-md-5"><p><h4>Регистрация нового пользователя (Организатор)</h4></p></div>
+
+{% endblock %}
+
+{% block content %}
+<div class="offset-md-3 col-md-5">
+{% for cat, msg in get_flashed_messages(True) %}
+    {% if msg == 'Такой адрес уже присутствует в базе' %}
+        <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+             {{ msg }}</div>
+ {% else %}
+    <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+        {{ msg }}</div>
+        {% endif %}
+
+{% endfor %}
+
+
+{% for field, errors in form.errors.items() %}
+<div class="col-sm-12">
+<div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">    {{ ', '.join(errors) }}</div>
+    </div>
+{% endfor %}
+
+
+<form  action="" method="post" class="form-contact" >
+
+
+
+    {{ form.hidden_tag() }}
+    <p>{{ form.fio.label(class="control-label") }} {{ form.fio(class="form-control") }}</p>
+    <p>{{ form.email.label(class="control-label") }} {{ form.email(class="form-control") }}</p>
+    <p>{{ form.password.label(class="control-label") }} {{ form.password(class="form-control") }}</p>
+    <p>{{ form.confirm_password.label(class="control-label") }} {{ form.confirm_password(class="form-control") }}</p>
+    <p>{{ form.submit(class='btn btn-outline-success') }}</p>
+
+
+    <!--<p><label>ФИО</label> <input type="text" name="fio" value="" required></p>
+    <p><label>Email</label> <input type="text" name="email" value="" required></p>
+    <p><label>Пароль</label> <input type="password" name="password" value="" required></p>
+    <p><label>Повтор пароля</label> <input type="password" name="password2" value="" required></p>
+    <p><input type="submit" value="Регистрация"></p>--!>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block content_title %}
+<div class="offset-md-3 col-md-5">
+    Регистрация нового пользователя
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="offset-md-3 col-md-5">
+<div class = 'choice_role_title'>Вы:</div>
+<div class = 'choice_role_container'>
+        <div class="role_student"><a href="{{ url_for('register_student') }}">Ученик</a></div>
+        <div class="role_teacher"><a href="{{ url_for('register_teacher') }}">Учитель</a></div>
+        <div class="role_organizer"><a href="{{ url_for('register_organizer') }}">Организатор</a></div>
+</div>
+    <div
+
+{% endblock %}

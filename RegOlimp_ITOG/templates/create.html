@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    Новая запись
+{% endblock %}
+
+{% block content_title %}
+<div class="offset-md-3 col-md-5">    Новая запись </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="offset-md-3 col-md-5">
+{% for cat, msg in get_flashed_messages(True) %}
+    <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">{{msg}}</div>
+ {% endfor %}
+
+{% for field, errors in form.errors.items() %}
+        <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+               <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+     {{ ', '.join(errors) }}</div>
+
+{% endfor %}
+<form  action="" method="post" class="form-contact">
+
+    {{ form.hidden_tag() }}
+
+    <p>{{ form.title.label(class="control-label") }} {{ form.title(class="form-control") }}</p>
+    <p>{{ form.body.label(class="control-label") }} {{ form.body(class="form-control") }}</p>
+    <p>{{ form.submit(class='btn btn-outline-success') }}</p>
+  <!--  <p><label>Email</label> <input type="text" name="email" value="" required></p>
+    <p><label>Пароль</label> <input type="password" name="password" value="" required></p>
+    <p><input type="submit" value="Войти"></p>-->
+</form>
+</div>
+
+
+{% endblock %}
